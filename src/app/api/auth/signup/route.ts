@@ -30,10 +30,11 @@ export async function POST(request: Request){
          password: hashedPassword
      })
      const savedUser = await user.save()
-     console.log(savedUser)
- 
- 
-     return NextResponse.json(savedUser)
+     return NextResponse.json({
+        _id: savedUser._id,
+        email: savedUser.email,
+        fullname: savedUser.fullname,
+     })
  } catch (error) {
     console.log(error)
     return NextResponse.error()
